@@ -77,24 +77,24 @@ class process_pendaftaran:
 ```
 # main.py
 ```python
-import re
 from data.hewan import Data_Pendaftaran
 from view.hewan import view_pendaftaran
 from process.hewan import process_pendaftaran
 
 def main():
     data_table = []  # Tempat menyimpan data pendaftaran
+
     while True:
-        print("\nselamat datang!!!")
+        print("\nSelamat datang!!!")
         print("Menu:")
         print("1. Tambah Data")
         print("2. Hapus Data")
         print("3. Edit Data")
         print("4. Lihat Semua Data")
         print("5. Keluar")
-        
+
         menu_choice = input("Pilih menu (1-5): ")
-        
+
         if menu_choice == "1":
             # Tambah Data
             try:
@@ -117,14 +117,14 @@ def main():
             else:
                 view_pendaftaran.table_view(data_table)
                 try:
-                    row_to_delete = int(input("Masukkan nama hewan yang ingin dihapus: "))
+                    row_to_delete = int(input("Masukkan nomor data yang ingin dihapus: "))
                     if 1 <= row_to_delete <= len(data_table):
                         deleted_data = data_table.pop(row_to_delete - 1)
                         view_pendaftaran.display_message(f"Data '{deleted_data.nama}' berhasil dihapus.")
                     else:
-                        view_pendaftaran.display_message("data yang dimasukkan tidak valid.")
+                        view_pendaftaran.display_message("Nomor yang dimasukkan tidak valid.")
                 except ValueError:
-                    view_pendaftaran.display_message("Input harus berupa huruf.")
+                    view_pendaftaran.display_message("Input harus berupa angka.")
 
         elif menu_choice == "3":
             # Edit Data
@@ -137,9 +137,9 @@ def main():
                     if 1 <= row_to_edit <= len(data_table):
                         data = data_table[row_to_edit - 1]
                         print(f"Edit data untuk: {data.nama}")
-                        nama = input(f"nama ({data.nama}): ") or data.nama
-                        jenis = input(f"jenis ({data.jenis}): ") or data.jenis
-                        habitat = input(f"habitat ({data.habitat}): ") or data.habitat
+                        nama = input(f"Nama ({data.nama}): ") or data.nama
+                        jenis = input(f"Jenis ({data.jenis}): ") or data.jenis
+                        habitat = input(f"Habitat ({data.habitat}): ") or data.habitat
 
                         updated_data = Data_Pendaftaran(nama, jenis, habitat)
                         process_pendaftaran.validate_data(updated_data)
@@ -150,8 +150,6 @@ def main():
                         view_pendaftaran.display_message("Nomor yang dimasukkan tidak valid.")
                 except ValueError as e:
                     view_pendaftaran.display_message(f"Error: {e}")
-                except Exception:
-                    view_pendaftaran.display_message("Terjadi kesalahan saat mengedit data.")
 
         elif menu_choice == "4":
             # Lihat Semua Data
@@ -162,13 +160,15 @@ def main():
 
         elif menu_choice == "5":
             # Keluar
-            print("Terima kasih telah mendaftar!!!")
+            print("Terima kasih telah menggunakan layanan pendaftaran!")
             break
         else:
             view_pendaftaran.display_message("Pilihan menu tidak valid. Silakan coba lagi.")
 
 if __name__ == "__main__":
     main()
+
+        
 ```
 # gambaran
 ![image](https://github.com/user-attachments/assets/d9e42d10-75da-412f-b52b-3c0fb6505865)
@@ -210,3 +210,11 @@ Linux/Mac:
     source .venv/bin/activate
 
 Setelah aktif, Anda dapat menginstal pustaka dengan pip seperti biasa, dan pustaka akan tersimpan di folder .venv.
+## Validasi Input
+![image](https://github.com/user-attachments/assets/9c558023-c168-491e-b5dd-8bc161858850)
+
+## Hasil Program
+![image](https://github.com/user-attachments/assets/048ed574-d901-4f3c-903b-0547ac601454)
+
+
+
